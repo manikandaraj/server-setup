@@ -1,0 +1,5 @@
+{
+  "data-root": "/vision/docker-root",
+  "storage-driver": "overlay2",
+  "dns": ["1.1.1.1", "8.8.8.8"]
+}

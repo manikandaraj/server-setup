@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  mongo-dev-server:
+    image: mongo:4.4.3
+    hostname: mongo-dev-server-v-4.4.3
+    container_name: mongo-dev-server-v-4.4.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Root123
+    ports:
+      - 27016:27017
+    volumes:
+      - /vision/data-storage/docker/mongo-dev-server-v-4.4.3:/data/db

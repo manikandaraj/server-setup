@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  nginx-prod-proxy-web-server:
+    container_name: nginx-prod-proxy-web-server-v-stable-perl
+    hostname: nginx-prod-proxy-web-server-v-stable-perl
+    image: nginx:stable-perl
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /vision/config/docker/nginx/nginx-prod-proxy-web-server-v-stable-perl/config:/etc/nginx/conf.d:ro
+      - /vision/web-apps:/usr/share/nginx/html:ro
+      - /logs/nginx-prod-proxy-web-server-v-stable-perl:/var/log/nginx
+      - /logs:/usr/share/nginx/dataroot/logs:ro
+

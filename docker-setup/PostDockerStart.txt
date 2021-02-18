@@ -1,0 +1,51 @@
+1. Install Docker and set the docker root by /etc/docker/daemon.json
+
+	[mani@MyServer ~]$ cat /etc/docker/daemon.json 
+	{
+	  "data-root": "/vision/docker-root",
+	  "storage-driver": "overlay2",
+	  "dns": ["1.1.1.1", "8.8.8.8"]
+	}
+
+	sudo usermod -aG docker <your-user>
+
+2. Redis Server Setup
+	Download Redis Conf from Web,
+			https://redis.io/topics/config
+	Redis-Cli Commands,
+		SELECT 1 - to select a db
+		KEYS *
+		HGETALL $HASH_KEY
+		HGET $HASH_KEY $KEY
+
+3. Postgres Server Setup
+	sudo yum install postgresql.x86_64
+
+	psql -h localhost -U postgres --port=5435
+		CREATE ROLE appuser WITH LOGIN CREATEDB CONNECTION LIMIT 100 PASSWORD 'Root123';
+		CREATE DATABASE appuser OWNER appuser;
+		CREATE DATABASE app_master_db OWNER appuser;
+
+	psql -h localhost -U appuser --port=5435
+		CREATE SCHEMA IF NOT EXISTS master AUTHORIZATION appuser;
+		//CREATE TABLES
+
+4. MongoDB Server Setup
+	docker exec -it mongo-prod-server-v-4.4.3 mongo admin -u root -p 'Root123'
+
+	use admin
+	db.createUser(
+	{
+		user: "appuser",
+		pwd: passwordPrompt(),
+		roles:[
+			{
+				role: "readWrite" , db:"mongo_app_db"
+			}
+		]
+	})
+
+For running in Python,
+  sudo yum install libpq-devel.x86_64
+  sudo yum install gcc.x86_64
+  sudo yum install python36-devel.x86_64

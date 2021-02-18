@@ -1,0 +1,13 @@
+version: '3.8'                                                                                                                                                                                                     
+services:
+  postgres-dev-server:
+    container_name: postgres-dev-server-v-9.6.20-alpine
+    hostname: postgres-dev-server-v-9.6.20-alpine
+    image: postgres:9.6.20-alpine
+    environment:
+      POSTGRES_PASSWORD: Root123
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - 5431:5432
+    volumes:
+      - /vision/data-storage/docker/postgres-dev-server-v-9.6.20-alpine:/var/lib/postgresql/data

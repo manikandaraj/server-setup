@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  redis-prod-server:
+    container_name: redis-prod-server-v-6.0.10
+    hostname: redis-prod-server-v-6.0.10
+    image: redis:6.0.10
+    ports:
+      - 6379:6379
+    volumes:
+      - /vision/data-storage/docker/redis-prod-server-v-6.0.10:/data
+      - /vision/config/docker/redis/redis-prod-server-v-6.0.10/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf

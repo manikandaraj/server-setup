@@ -1,0 +1,14 @@
+version: '3.8'                                                                                                                                                                                                     
+services:
+  mysql-prod-server:
+    container_name: mysql-prod-server-v-8.0.23
+    hostname: mysql-prod-server-v-8.0.23
+    image: mysql:8.0.23
+    environment:
+      MYSQL_ROOT_PASSWORD: Root123
+    ports:
+      - 3306:3306
+    volumes:
+      - /vision/data-storage/docker/mysql-prod-server-v-8.0.23:/var/lib/mysql
+      - /vision/conf/docker-conf/mysql-prod-server-v-8.0.23/custom-props.cnf:/etc/mysql/conf.d/custom.cnf
+      - /logs/mysql-prod-server-v-8.0.23:/var/log/mysql

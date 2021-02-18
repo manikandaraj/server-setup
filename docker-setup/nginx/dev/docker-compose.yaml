@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  nginx-dev-proxy-web-server:
+    container_name: nginx-dev-proxy-web-server-v-stable-perl
+    hostname: nginx-dev-proxy-web-server-v-stable-perl
+    image: nginx:stable-perl
+    ports:
+      - 79:80
+      - 442:443
+    volumes:
+      - /vision/config/docker/nginx/nginx-dev-proxy-web-server-v-stable-perl/config:/etc/nginx/conf.d:ro
+      - /vision/web-apps:/usr/share/nginx/html:ro
+      - /logs/nginx-dev-proxy-web-server-v-stable-perl:/var/log/nginx
+      - /logs:/usr/share/nginx/dataroot/logs:ro
+

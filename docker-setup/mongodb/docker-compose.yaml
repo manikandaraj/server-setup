@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  mongo-prod-server:
+    image: mongo:4.4.3
+    hostname: mongo-prod-server-v-4.4.3
+    container_name: mongo-prod-server-v-4.4.3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Root123
+    ports:
+      - 27017:27017
+    volumes:
+      - /vision/data-storage/docker/mongo-prod-server-v-4.4.3:/data/db
